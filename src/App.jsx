@@ -4,12 +4,15 @@ import Header from "./components/header/header";
 import AddTask from "./components/addTask/AddTask";
 import Content from "./components/content/content";
 import UpdateTask from "./components/updateTask/UpdateTask";
+import { notification } from "antd";
+import "@ant-design/v5-patch-for-react-19";
 
 function App() {
   const [tasks, setTasks] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingTask, setEditingTask] = useState(null);
   const [filterStatus, setFilterStatus] = useState("All");
+  const [deleteSuccess, setDeleteSuccess] = useState(false);
 
   // ✅ Hàm thêm task
   const addTask = (title, status) => {
@@ -47,12 +50,28 @@ function App() {
     setTasks((prevTasks) => {
       const updatedTasks = prevTasks.filter((task) => task.id !== taskId);
 
+      console.log("🔥 Updated tasks:", updatedTasks);
       // Cập nhật localStorage
       localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+
+      setDeleteSuccess(true);
 
       return updatedTasks;
     });
   };
+
+  // 🆕 Hiển thị thông báo khi delete thành công
+  useEffect(() => {
+    if (deleteSuccess) {
+      notification.success({
+        message: "Task deleted successfully.",
+        description: "",
+        placement: "bottomRight",
+        duration: 3,
+      });
+      setDeleteSuccess(false); // Reset lại state sau khi hiển thị thông báo
+    }
+  }, [deleteSuccess]);
 
   // ✅ Hàm cập nhật task
   const updateTask = (updatedTask) => {
@@ -108,7 +127,8 @@ function App() {
           setIsModalOpen(false); // Đóng modal
         }}
         updateTask={updateTask}
-        task={editingTask} // Truyền task đang chỉnh sửa
+        task={editingTask}
+        tasks={tasks} // Truyền task đang chỉnh sửa
       />
     </>
   );

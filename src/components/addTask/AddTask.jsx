@@ -26,6 +26,12 @@ const AddTask = ({ isOpen, onClose, addTask }) => {
     e.preventDefault();
 
     if (!title.trim()) {
+      notification.error({
+        message: "Please enter a title.",
+        description: "",
+        placement: "bottomRight",
+        duration: 3,
+      });
       return;
     }
 

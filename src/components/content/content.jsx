@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import "./content.scss";
 import CheckBox from "../../assets/checkbox.svg";
 import { MdEdit, MdDelete } from "react-icons/md";
-
+import AOS from "aos";
+import "aos/dist/aos.css";
 const Content = ({ tasks, onDelete, onEdit, filterStatus }) => {
   const [checkedTasks, setCheckedTasks] = useState({});
 
@@ -33,7 +34,7 @@ const Content = ({ tasks, onDelete, onEdit, filterStatus }) => {
         ) : (
           filteredTasks.map((task) => (
             <div className="content__list__item" key={task.id}>
-              <div className="content__infos">
+              <div className="content__infos" data-aos="fade-up">
                 <div
                   className={`content__checkbox ${
                     checkedTasks[task.id] || task.status === "incomplete"

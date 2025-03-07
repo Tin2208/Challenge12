@@ -6,7 +6,7 @@ import "@ant-design/v5-patch-for-react-19";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-const UpdateTask = ({ isOpen, onClose, updateTask, task }) => {
+const UpdateTask = ({ isOpen, onClose, updateTask, task, tasks }) => {
   const [title, setTitle] = useState("");
   const [status, setStatus] = useState("");
 
@@ -43,16 +43,42 @@ const UpdateTask = ({ isOpen, onClose, updateTask, task }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!title.trim()) return;
+    if (!title.trim()) {
+      notification.error({
+        message: "Please enter a title.",
+        description: "",
+        placement: "bottomRight",
+        duration: 3,
+      });
+      return;
+    }
 
     if (typeof updateTask !== "function") {
       console.error("❌ updateTask is not a function!");
       return;
     }
 
+    // Tìm task cũ trong danh sách
+    const existingTask = tasks.find((task) => task.id === task.id);
+
+    // Kiểm tra xem có thay đổi không
+    if (
+      existingTask &&
+      existingTask.title === title &&
+      existingTask.status === status
+    ) {
+      notification.error({
+        message: "No change made.",
+        description: "",
+        placement: "bottomRight",
+        duration: 3,
+      });
+      return; // ❌ Không đóng modal
+    }
+
     // Hiển thị thông báo thành công với Ant Design
     notification.success({
-      message: "Task update successfully.",
+      message: "Task updated successfully.",
       description: "",
       placement: "bottomRight",
       duration: 3,
@@ -60,7 +86,8 @@ const UpdateTask = ({ isOpen, onClose, updateTask, task }) => {
 
     // 🆕 Gửi task đã cập nhật về App.jsx
     updateTask({ id: task.id, title, status, timestamp: formattedTimestamp });
-    onClose(); // Đóng modal sau khi cập nhật
+
+    onClose(); // ✅ Chỉ đóng modal khi cập nhật thành công
   };
 
   return (
