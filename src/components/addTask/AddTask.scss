@@ -9,7 +9,7 @@
   width: 100%;
   z-index: 1000;
   @include flex-justify-center;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  opacity: 0;
 
   &__modal {
     background-color: #ecedf6;
@@ -20,8 +20,6 @@
     position: relative;
     width: 90%;
     display: flex;
-    transform: scale(1);
-    transition: all 0.3s ease;
   }
 
   &__close {
@@ -98,6 +96,6 @@
 }
 .addTask.show {
   opacity: 1;
-  visibility: visible;
   transform: scale(1);
+  pointer-events: auto;
 }

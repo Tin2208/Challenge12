@@ -3,6 +3,8 @@ import "./UpdateTask.scss";
 import { IoMdClose } from "react-icons/io";
 import { notification } from "antd";
 import "@ant-design/v5-patch-for-react-19";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const UpdateTask = ({ isOpen, onClose, updateTask, task }) => {
   const [title, setTitle] = useState("");
@@ -17,6 +19,16 @@ const UpdateTask = ({ isOpen, onClose, updateTask, task }) => {
     }) +
     " - " +
     now.toLocaleDateString();
+
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
+
+  useEffect(() => {
+    if (isOpen) {
+      AOS.refreshHard();
+    }
+  }, [isOpen]);
 
   // 🆕 Cập nhật giá trị title và status khi task thay đổi
   useEffect(() => {
@@ -53,9 +65,13 @@ const UpdateTask = ({ isOpen, onClose, updateTask, task }) => {
 
   return (
     <div className={`updateTask ${isOpen ? "show" : ""}`}>
-      <div className="updateTask__modal">
+      <div
+        className="updateTask__modal"
+        data-aos="zoom-in"
+        data-aos-duration="300"
+      >
         <div className="updateTask__close">
-          <button onClick={onClose}>
+          <button data-aos={isOpen ? "fade-up" : ""} onClick={onClose}>
             <IoMdClose />
           </button>
         </div>

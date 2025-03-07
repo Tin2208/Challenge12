@@ -51,7 +51,11 @@ const AddTask = ({ isOpen, onClose, addTask }) => {
   return (
     <>
       <div className={`addTask ${isOpen ? "show" : ""}`}>
-        <div className="addTask__modal">
+        <div
+          className="addTask__modal"
+          data-aos="zoom-in"
+          data-aos-duration="300"
+        >
           <div className="addTask__close">
             <button data-aos={isOpen ? "fade-up" : ""} onClick={onClose}>
               <IoMdClose />
