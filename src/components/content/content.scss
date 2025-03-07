@@ -1,0 +1,115 @@
+@import "../../style/mixin.scss";
+
+.content {
+  @include flex-justify-center;
+  flex-direction: column;
+
+  &__list {
+    max-width: 750px;
+    background-color: #ecedf6;
+    border-radius: 12px;
+    padding: 15px;
+    width: 100%;
+    @include flex-column;
+    gap: 15px;
+  }
+
+  .content__list__item {
+    background-color: #fff;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+  }
+
+  &__infos {
+    @include flex-justify-center;
+    gap: 1rem;
+  }
+
+  &__checkbox {
+    background-color: #646ff0;
+    align-items: center;
+    border-radius: 2px;
+    cursor: pointer;
+    display: flex;
+    flex-basis: 25px;
+    flex-shrink: 0;
+    height: 25px;
+    justify-content: center;
+    padding: 5px;
+    transition: background-color 0.3s ease;
+    transition: all 1s ease;
+
+    img {
+      width: 15px;
+      transition: opacity 0.3s ease;
+    }
+
+    &.incomplete {
+      background-color: #dedfe1;
+    }
+  }
+
+  .content__text--work {
+    font-size: 14px;
+    color: #585858;
+    text-decoration: line-through;
+    opacity: 0.7;
+  }
+
+  .content__text--times {
+    @include flex-justify-center;
+    font-size: 12px;
+    color: #585858;
+    opacity: 0.7;
+  }
+
+  &__buttons {
+    @include flex-align-center;
+    gap: 10px;
+
+    button {
+      padding: 5px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      &:hover {
+        background-color: #dedfe1;
+      }
+    }
+    svg {
+      width: 20px;
+      height: 20px;
+      vertical-align: middle;
+      color: #585858;
+    }
+  }
+
+  .content__checkbox.checked {
+    background-color: #dedfe1;
+  }
+
+  .content__checkbox.checked img {
+    // visibility: hidden;
+    opacity: 0;
+  }
+
+  .content__text--work.incomplete,
+  .content__text--work.unchecked {
+    opacity: unset;
+    text-decoration: unset;
+  }
+
+  .content__noTodos {
+    p {
+      font-size: 16px;
+      margin: 0 auto;
+      padding: 5px 10px;
+      background-color: #dedfe1;
+      color: #585858;
+      border-radius: 8px;
+      width: max-content;
+    }
+  }
+}

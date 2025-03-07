@@ -1,0 +1,48 @@
+@import "./style/mixin.scss";
+
+.wrapper {
+  margin: 0 auto;
+  max-width: 1200px;
+  width: 90%;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  outline: none;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+}
+
+.btn--primary {
+  background-color: #646ff0;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 500;
+  height: auto;
+  overflow: hidden;
+  padding: 8px 20px;
+  text-decoration: none;
+}
+
+.btn--secondary {
+  background-color: #cccdde;
+  color: #646681;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 500;
+  height: auto;
+  overflow: hidden;
+  padding: 8px 20px;
+  text-decoration: none;
+}

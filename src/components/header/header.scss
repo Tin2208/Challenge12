@@ -1,0 +1,38 @@
+@import "../../style/mixin.scss";
+
+.header {
+  @include flex-justify-center;
+  flex-direction: column;
+  padding-bottom: 15px;
+  h1 {
+    color: #646681;
+    font-size: 30px;
+    font-weight: 700;
+    margin: 2rem auto 1.5rem;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
+  }
+
+  &__buttons {
+    @include flex-between;
+    width: 100%;
+    max-width: 750px;
+    height: 60px;
+  }
+
+  button {
+  
+  }
+
+  select {
+    background-color: #cccdde;
+    border: none;
+    color: #585858;
+    cursor: pointer;
+    padding: 10px;
+    width: 150px;
+    border-radius: 6px;
+    font-size: 16px;
+  }
+}

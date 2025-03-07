@@ -1,0 +1,103 @@
+@import "../../style/mixin.scss";
+
+.addTask {
+  background-color: #00000080;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  @include flex-justify-center;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+
+  &__modal {
+    background-color: #ecedf6;
+    border-radius: 8px;
+    margin: 0 auto;
+    max-width: 500px;
+    padding: 20px;
+    position: relative;
+    width: 90%;
+    display: flex;
+    transform: scale(1);
+    transition: all 0.3s ease;
+  }
+
+  &__close {
+    background-color: #eee;
+
+    button {
+      cursor: pointer;
+      @include flex-justify-center;
+      color: #585858;
+      border-radius: 4px;
+      border: none;
+      position: absolute;
+      right: 0;
+      font-size: 2.5rem;
+      // top: -10px;
+      top: -55px;
+      transition: all 0.3s ease;
+      z-index: -1;
+      svg {
+        max-width: 25px;
+      }
+    }
+  }
+
+  form {
+    @include flex-column;
+    color: #646681;
+    width: 100%;
+
+    h2 {
+      font-size: 20px;
+      margin: 0 0 20px;
+    }
+
+    input,
+    select {
+      border: none;
+      font-size: 16px;
+      margin: 5px 0 20px;
+      padding: 10px;
+      width: 100%;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 10px;
+  }
+
+  .addTask__toast-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: white; /* Màu xanh lá */
+    color: #585858;
+    padding: 12px 20px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 1;
+    animation: fadeOut 5s ease-in-out forwards;
+  }
+
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    80% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+}
+.addTask.show {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
